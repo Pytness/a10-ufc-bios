@@ -237,7 +237,7 @@ void PCF8574::selectN(const uint8_t pin) {
 
 Adafruit_LiquidCrystal lcd(0);
 PCF8574 ROWS_PCF(0x20);
-PCF8574 COLS_PCF(0x21);
+PCF8574 COLS_PCF(0x24);
 
 bool get_bit(int n, char bit) {
 	return (n & (1 << bit)) != 0;
