@@ -256,33 +256,39 @@ int read_buttons() {
 		return result;
 	}
 
-	for (int column = 0; column <= 7; column++) {
-		bool bit = get_bit(cols_status, column);
+	for (byte column = 0; column <= 7; column++) {
 
-		if (bit == false) {
-			for (int row = 0; row < 8; row++) {
-				ROWS_PCF.write(row, LOW);
+		// All bits are inverted, so looking for a LOW bit
+		const bool is_activated = get_bit(cols_status, column) == false;
 
-				int col_value = COLS_PCF.read(column);
-
-				// always return the row driver output to HIGH after checking a row
-				ROWS_PCF.write(row, HIGH);
-
-				if (col_value == LOW) {
-					result = row * 8 + column;
-					break;
-				}
-			}
-
-			break;
+		if (!is_activated) {
+			continue;
 		}
+
+		for (byte row = 0; row < 8; row++) {
+
+			// Query the row 
+			ROWS_PCF.write(row, LOW);
+
+			// Read the column value
+			int col_value = COLS_PCF.read(column);
+
+			// always return the row driver output to HIGH after checking a row
+			ROWS_PCF.write(row, HIGH);
+
+			if (col_value == LOW) {
+				result = row * 8 + column;
+				break;
+			}
+		}
+
+		break;
 	}
 
 	return result;
 }
 
 void test_mode() {
-	Serial.println();
 	Serial.println("I2C scanner. Scanning ...");
 	byte count = 0;
 
