@@ -189,7 +189,8 @@ void PCF8574::rotateLeft(const uint8_t n) {
 	rotateRight(8 - (n & 7));
 }
 
-void PCF8574::reverse() //  quite fast: 4 and, 14 shifts, 3 or, 3 assignment. {
+//  quite fast: 4 and, 14 shifts, 3 or, 3 assignment.
+void PCF8574::reverse() {
 	uint8_t x = _dataOut;
 	x = (((x & 0xAA) >> 1) | ((x & 0x55) << 1));
 	x = (((x & 0xCC) >> 2) | ((x & 0x33) << 2));
