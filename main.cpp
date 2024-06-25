@@ -235,9 +235,46 @@ void PCF8574::selectN(const uint8_t pin) {
 	write8(n);
 };
 
+
+const byte ADDRESS_COUNT_LIMIT = 4;
+
+const byte ROW_ADDRESS_START = 0x20;
+const byte COLUMN_ADDRESS_START = 0x24;
+
+int ROW_ADDRESS_COUNT = 0;
+int COLUMN_ADDRESS_COUNT = 0;
+
 Adafruit_LiquidCrystal lcd(0);
+
+
 PCF8574 ROWS_PCF(0x20);
 PCF8574 COLS_PCF(0x24);
+
+
+void niscover_row_col_devices() {
+	for (int i = ROW_ADDRESS_START; i <= (ROW_ADDRESS_START + ADDRESS_COUNT_LIMIT); i++) {
+		Wire.beginTransmission(i);
+		if (Wire.endTransmission() == 0) {
+			ROW_ADDRESS_COUNT++;
+			delay(1);
+		} else {
+			break;
+		}
+	}
+
+	for (int i = COLUMN_ADDRESS_START; i <= (COLUMN_ADDRESS_START + ADDRESS_COUNT_LIMIT); i++) {
+		Wire.beginTransmission(i);
+		if (Wire.endTransmission() == 0) {
+			COLUMN_ADDRESS_COUNT++;
+			delay(1);
+		} else {
+			break;
+		}
+	}
+
+	Serial.println(ROW_ADDRESS_COUNT);
+	Serial.println(COLUMN_ADDRESS_COUNT);
+}
 
 bool get_bit(int n, char bit) {
 	return (n & (1 << bit)) != 0;
@@ -293,7 +330,6 @@ void test_mode() {
 	Serial.println("I2C scanner. Scanning ...");
 	byte count = 0;
 
-	Wire.begin();
 	for (int i = 0; i <= 255; i++) {
 		Wire.beginTransmission(i);
 		if (Wire.endTransmission() == 0) {
@@ -330,6 +366,8 @@ void setup() {
 	while (!Serial) {
 	}
 
+	Wire.begin();
+
 	bool enter_test_mode = digitalRead(TEST_INPUT) == HIGH;
 
 	if (!lcd.begin(16, 2)) {
@@ -345,6 +383,8 @@ void setup() {
 		while (1)
 			;
 	}
+
+	discover_row_col_devices();
 	lcd.print("hello, world!");
 
 } 
