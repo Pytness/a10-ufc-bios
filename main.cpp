@@ -235,6 +235,8 @@ void PCF8574::selectN(const uint8_t pin) {
 	write8(n);
 };
 
+#define ERROR_LED 11
+#define TEST_INPUT 12
 
 const byte ADDRESS_COUNT_LIMIT = 4;
 
@@ -245,10 +247,6 @@ int ROW_ADDRESS_COUNT = 0;
 int COLUMN_ADDRESS_COUNT = 0;
 
 Adafruit_LiquidCrystal lcd(0);
-
-
-// PCF8574 ROWS_PCF(0x20);
-// PCF8574 COLS_PCF(0x24);
 
 
 void discover_row_col_devices() {
@@ -322,7 +320,6 @@ int read_buttons_at_address(int row_address, int column_address) {
 			ROWS_PCF.write(row, HIGH);
 
 			if (col_value == LOW) {
-
 				int columns_per_row = 8 * COLUMN_ADDRESS_COUNT;
 				int row_offset = (columns_per_row * 8 * row_chunk_index) + columns_per_row * row ;
 				int column_offset = 8 * column_chunk_index;
@@ -340,30 +337,24 @@ int read_buttons_at_address(int row_address, int column_address) {
 
 
 int read_buttons() {
-
-	int button = -1;
-
 	for(int row_address = ROW_ADDRESS_START; row_address < (ROW_ADDRESS_START + ROW_ADDRESS_COUNT); row_address++) {
 		for(int column_address = COLUMN_ADDRESS_START; column_address < (COLUMN_ADDRESS_START + COLUMN_ADDRESS_COUNT); column_address++) {
 
-			button = read_buttons_at_address(row_address, column_address);
+			int button = read_buttons_at_address(row_address, column_address);
 
 			if (button != -1) {
-				break;
+				return button;
 			}
-		}
-
-		if (button != -1) {
-			break;
 		}
 	}
 
-	return button;
+	return -1;
 }
 
 void test_mode() {
-	Serial.println("I2C scanner. Scanning ...");
 	byte count = 0;
+
+	Serial.println("I2C scanner. Scanning ...");
 
 	for (int i = 0; i <= 255; i++) {
 		Wire.beginTransmission(i);
@@ -384,8 +375,6 @@ void test_mode() {
 	Serial.println(" device(s).");
 }
 
-#define ERROR_LED 11
-#define TEST_INPUT 12
 
 void show_error_signal() {
 	digitalWrite(ERROR_LED, HIGH);
