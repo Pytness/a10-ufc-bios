@@ -247,11 +247,11 @@ int COLUMN_ADDRESS_COUNT = 0;
 Adafruit_LiquidCrystal lcd(0);
 
 
-PCF8574 ROWS_PCF(0x20);
-PCF8574 COLS_PCF(0x24);
+// PCF8574 ROWS_PCF(0x20);
+// PCF8574 COLS_PCF(0x24);
 
 
-void niscover_row_col_devices() {
+void discover_row_col_devices() {
 	for (int i = ROW_ADDRESS_START; i <= (ROW_ADDRESS_START + ADDRESS_COUNT_LIMIT); i++) {
 		Wire.beginTransmission(i);
 		if (Wire.endTransmission() == 0) {
@@ -280,8 +280,15 @@ bool get_bit(int n, char bit) {
 	return (n & (1 << bit)) != 0;
 }
 
-int read_buttons() {
+int read_buttons_at_address(int row_address, int column_address) {
 	int result = -1;
+
+	PCF8574 ROWS_PCF(row_address);
+	PCF8574 COLS_PCF(column_address);
+
+	const int row_chunk_index = row_address - ROW_ADDRESS_START;
+	const int column_chunk_index = column_address - COLUMN_ADDRESS_START;
+
 
 	ROWS_PCF.write8(0);
 
@@ -315,7 +322,12 @@ int read_buttons() {
 			ROWS_PCF.write(row, HIGH);
 
 			if (col_value == LOW) {
-				result = row * 8 + column;
+
+				int columns_per_row = 8 * COLUMN_ADDRESS_COUNT;
+				int row_offset = columns_per_row * row;
+				int column_offset = 8 * column_chunk_index;
+
+				result = (row_offset + column_offset) + (column);
 				break;
 			}
 		}
@@ -324,6 +336,25 @@ int read_buttons() {
 	}
 
 	return result;
+}
+
+
+int read_buttons() {
+
+	int button = -1;
+
+	for(int row_address = ROW_ADDRESS_START; row_address < (ROW_ADDRESS_START + ROW_ADDRESS_COUNT); row_address++) {
+		for(int column_address = COLUMN_ADDRESS_START; column_address < (COLUMN_ADDRESS_START + COLUMN_ADDRESS_COUNT); column_address++) {
+
+			button = read_buttons_at_address(row_address, column_address);
+
+			if (button != -1) {
+				break;
+			}
+		}
+	}
+
+	return button;
 }
 
 void test_mode() {
