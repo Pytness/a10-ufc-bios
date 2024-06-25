@@ -296,9 +296,10 @@ void test_mode() {
 			Serial.print(i, HEX);
 			Serial.println(")");
 			count++;
-			delay(1); // maybe unneeded?
-		} // end of good response
-	} // end of for loop
+			delay(1);
+		}
+	}
+	
 	Serial.println("Done.");
 	Serial.print("Found ");
 	Serial.print(count, DEC);
@@ -339,7 +340,7 @@ void setup() {
 	}
 	lcd.print("hello, world!");
 
-} // end of setup
+} 
 
 int last_button = -1;
 void loop() {
