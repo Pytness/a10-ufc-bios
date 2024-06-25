@@ -352,6 +352,10 @@ int read_buttons() {
 				break;
 			}
 		}
+
+		if (button != -1) {
+			break;
+		}
 	}
 
 	return button;
