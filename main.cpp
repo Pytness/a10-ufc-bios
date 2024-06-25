@@ -324,7 +324,7 @@ int read_buttons_at_address(int row_address, int column_address) {
 			if (col_value == LOW) {
 
 				int columns_per_row = 8 * COLUMN_ADDRESS_COUNT;
-				int row_offset = columns_per_row * row;
+				int row_offset = (columns_per_row * 8 * row_chunk_index) + columns_per_row * row ;
 				int column_offset = 8 * column_chunk_index;
 
 				result = (row_offset + column_offset) + (column);
