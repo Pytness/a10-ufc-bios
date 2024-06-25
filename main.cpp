@@ -10,8 +10,7 @@
 #define PCF8574_PIN_ERROR 0x81
 #define PCF8574_I2C_ERROR 0x82
 
-class PCF8574
-{
+class PCF8574 {
 public:
 	explicit PCF8574(const uint8_t deviceAddress = 0x20, TwoWire *wire = &Wire);
 
@@ -65,8 +64,7 @@ private:
 	TwoWire *_wire;
 };
 
-PCF8574::PCF8574(const uint8_t deviceAddress, TwoWire *wire)
-{
+PCF8574::PCF8574(const uint8_t deviceAddress, TwoWire *wire) {
 	_address = deviceAddress;
 	_wire = wire;
 	_dataIn = 0;
@@ -75,28 +73,24 @@ PCF8574::PCF8574(const uint8_t deviceAddress, TwoWire *wire)
 	_error = PCF8574_OK;
 }
 
-bool PCF8574::begin(uint8_t value)
-{
+bool PCF8574::begin(uint8_t value) {
 	if (!isConnected())
 		return false;
 	PCF8574::write8(value);
 	return true;
 }
 
-bool PCF8574::isConnected()
-{
+bool PCF8574::isConnected() {
 	_wire->beginTransmission(_address);
 	return (_wire->endTransmission() == 0);
 }
 
-bool PCF8574::setAddress(const uint8_t deviceAddress)
-{
+bool PCF8574::setAddress(const uint8_t deviceAddress) {
 	_address = deviceAddress;
 	return isConnected();
 }
 
-uint8_t PCF8574::getAddress()
-{
+uint8_t PCF8574::getAddress() {
 	return _address;
 }
 
@@ -105,10 +99,8 @@ uint8_t PCF8574::getAddress()
 //  without @100 KHz -> 132 micros()
 //  without @400 KHz -> 52 micros()
 //  TODO    @800 KHz -> ??
-uint8_t PCF8574::read8()
-{
-	if (_wire->requestFrom(_address, (uint8_t)1) != 1)
-	{
+uint8_t PCF8574::read8() {
+	if (_wire->requestFrom(_address, (uint8_t)1) != 1) {
 		_error = PCF8574_I2C_ERROR;
 		return _dataIn; //  last value
 	}
@@ -116,18 +108,15 @@ uint8_t PCF8574::read8()
 	return _dataIn;
 }
 
-void PCF8574::write8(const uint8_t value)
-{
+void PCF8574::write8(const uint8_t value) {
 	_dataOut = value;
 	_wire->beginTransmission(_address);
 	_wire->write(_dataOut);
 	_error = _wire->endTransmission();
 }
 
-uint8_t PCF8574::read(const uint8_t pin)
-{
-	if (pin > 7)
-	{
+uint8_t PCF8574::read(const uint8_t pin) {
+	if (pin > 7) {
 		_error = PCF8574_PIN_ERROR;
 		return 0;
 	}
@@ -135,42 +124,34 @@ uint8_t PCF8574::read(const uint8_t pin)
 	return (_dataIn & (1 << pin)) > 0;
 }
 
-void PCF8574::write(const uint8_t pin, const uint8_t value)
-{
-	if (pin > 7)
-	{
+void PCF8574::write(const uint8_t pin, const uint8_t value) {
+	if (pin > 7) {
 		_error = PCF8574_PIN_ERROR;
 		return;
 	}
-	if (value == LOW)
-	{
+	if (value == LOW) {
 		_dataOut &= ~(1 << pin);
 	}
-	else
-	{
+	else {
 		_dataOut |= (1 << pin);
 	}
 	write8(_dataOut);
 }
 
-void PCF8574::toggle(const uint8_t pin)
-{
-	if (pin > 7)
-	{
+void PCF8574::toggle(const uint8_t pin) {
+	if (pin > 7) {
 		_error = PCF8574_PIN_ERROR;
 		return;
 	}
 	toggleMask(1 << pin);
 }
 
-void PCF8574::toggleMask(const uint8_t mask)
-{
+void PCF8574::toggleMask(const uint8_t mask) {
 	_dataOut ^= mask;
 	PCF8574::write8(_dataOut);
 }
 
-void PCF8574::shiftRight(const uint8_t n)
-{
+void PCF8574::shiftRight(const uint8_t n) {
 	if ((n == 0) || (_dataOut == 0))
 		return;
 	if (n > 7)
@@ -180,8 +161,7 @@ void PCF8574::shiftRight(const uint8_t n)
 	PCF8574::write8(_dataOut);
 }
 
-void PCF8574::shiftLeft(const uint8_t n)
-{
+void PCF8574::shiftLeft(const uint8_t n) {
 	if ((n == 0) || (_dataOut == 0))
 		return;
 	if (n > 7)
@@ -191,15 +171,13 @@ void PCF8574::shiftLeft(const uint8_t n)
 	PCF8574::write8(_dataOut);
 }
 
-int PCF8574::lastError()
-{
+int PCF8574::lastError() {
 	int e = _error;
 	_error = PCF8574_OK; //  reset error after read, is this wise?
 	return e;
 }
 
-void PCF8574::rotateRight(const uint8_t n)
-{
+void PCF8574::rotateRight(const uint8_t n) {
 	uint8_t r = n & 7;
 	if (r == 0)
 		return;
@@ -207,13 +185,11 @@ void PCF8574::rotateRight(const uint8_t n)
 	PCF8574::write8(_dataOut);
 }
 
-void PCF8574::rotateLeft(const uint8_t n)
-{
+void PCF8574::rotateLeft(const uint8_t n) {
 	rotateRight(8 - (n & 7));
 }
 
-void PCF8574::reverse() //  quite fast: 4 and, 14 shifts, 3 or, 3 assignment.
-{
+void PCF8574::reverse() //  quite fast: 4 and, 14 shifts, 3 or, 3 assignment. {
 	uint8_t x = _dataOut;
 	x = (((x & 0xAA) >> 1) | ((x & 0x55) << 1));
 	x = (((x & 0xCC) >> 2) | ((x & 0x33) << 2));
@@ -222,8 +198,7 @@ void PCF8574::reverse() //  quite fast: 4 and, 14 shifts, 3 or, 3 assignment.
 }
 
 //  added 0.1.07/08 Septillion
-uint8_t PCF8574::readButton8(const uint8_t mask)
-{
+uint8_t PCF8574::readButton8(const uint8_t mask) {
 	uint8_t temp = _dataOut;
 	PCF8574::write8(mask | _dataOut); //  read only selected lines
 	PCF8574::read8();
@@ -232,10 +207,8 @@ uint8_t PCF8574::readButton8(const uint8_t mask)
 }
 
 //  added 0.1.07 Septillion
-uint8_t PCF8574::readButton(const uint8_t pin)
-{
-	if (pin > 7)
-	{
+uint8_t PCF8574::readButton(const uint8_t pin) {
+	if (pin > 7) {
 		_error = PCF8574_PIN_ERROR;
 		return 0;
 	}
@@ -247,16 +220,14 @@ uint8_t PCF8574::readButton(const uint8_t pin)
 	return value;
 }
 
-void PCF8574::select(const uint8_t pin)
-{
+void PCF8574::select(const uint8_t pin) {
 	uint8_t n = 0x00;
 	if (pin < 8)
 		n = 1 << pin;
 	write8(n);
 };
 
-void PCF8574::selectN(const uint8_t pin)
-{
+void PCF8574::selectN(const uint8_t pin) {
 	uint8_t n = 0xFF;
 	if (pin < 8)
 		n = (2 << pin) - 1;
@@ -267,13 +238,11 @@ Adafruit_LiquidCrystal lcd(0);
 PCF8574 ROWS_PCF(0x20);
 PCF8574 COLS_PCF(0x21);
 
-bool get_bit(int n, char bit)
-{
+bool get_bit(int n, char bit) {
 	return (n & (1 << bit)) != 0;
 }
 
-int read_buttons()
-{
+int read_buttons() {
 	int result = -1;
 
 	ROWS_PCF.write8(0);
@@ -283,19 +252,15 @@ int read_buttons()
 	// Reset to HIGH
 	ROWS_PCF.write8(255);
 
-	if (cols_status == 255)
-	{
+	if (cols_status == 255)	{
 		return result;
 	}
 
-	for (int column = 0; column <= 7; column++)
-	{
+	for (int column = 0; column <= 7; column++) {
 		bool bit = get_bit(cols_status, column);
 
-		if (bit == false)
-		{
-			for (int row = 0; row < 8; row++)
-			{
+		if (bit == false) {
+			for (int row = 0; row < 8; row++) {
 				ROWS_PCF.write(row, LOW);
 
 				int col_value = COLS_PCF.read(column);
@@ -303,8 +268,7 @@ int read_buttons()
 				// always return the row driver output to HIGH after checking a row
 				ROWS_PCF.write(row, HIGH);
 
-				if (col_value == LOW)
-				{
+				if (col_value == LOW) {
 					result = row * 8 + column;
 					break;
 				}
@@ -317,18 +281,15 @@ int read_buttons()
 	return result;
 }
 
-void test_mode()
-{
+void test_mode() {
 	Serial.println();
 	Serial.println("I2C scanner. Scanning ...");
 	byte count = 0;
 
 	Wire.begin();
-	for (int i = 0; i <= 255; i++)
-	{
+	for (int i = 0; i <= 255; i++) {
 		Wire.beginTransmission(i);
-		if (Wire.endTransmission() == 0)
-		{
+		if (Wire.endTransmission() == 0) {
 			Serial.print("Found address: ");
 			Serial.print(i, DEC);
 			Serial.print(" (0x");
@@ -347,35 +308,30 @@ void test_mode()
 #define ERROR_LED 11
 #define TEST_INPUT 12
 
-void show_error_signal()
-{
+void show_error_signal() {
 	digitalWrite(ERROR_LED, HIGH);
 }
 
-void setup()
-{
+void setup() {
 	Serial.begin(115200);
 
 	pinMode(ERROR_LED, OUTPUT);
 	pinMode(TEST_INPUT, INPUT_PULLUP);
 
 	// Wait for serial port to be available
-	while (!Serial)
-	{
+	while (!Serial) {
 	}
 
 	bool enter_test_mode = digitalRead(TEST_INPUT) == HIGH;
 
-	if (!lcd.begin(16, 2))
-	{
+	if (!lcd.begin(16, 2)) {
 		show_error_signal();
 		Serial.println("Could not init lcd. Check wiring.");
 		while (1)
 			;
 	}
 
-	if (enter_test_mode)
-	{
+	if (enter_test_mode) {
 		Serial.println("Entering test mode...");
 		test_mode();
 		while (1)
@@ -386,11 +342,9 @@ void setup()
 } // end of setup
 
 int last_button = -1;
-void loop()
-{
+void loop() {
 	int const result = read_buttons();
-	if (result != last_button)
-	{
+	if (result != last_button) {
 		last_button = result;
 		Serial.print("button # ");
 		Serial.print(result);
