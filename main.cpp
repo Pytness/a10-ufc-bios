@@ -1,5 +1,4 @@
 #include <Adafruit_LiquidCrystal.h>
-
 #include <Wire.h>
 
 #ifndef PCF8574_INITIAL_VALUE
@@ -248,7 +247,6 @@ int COLUMN_ADDRESS_COUNT = 0;
 
 Adafruit_LiquidCrystal lcd(0);
 
-
 void discover_row_col_devices() {
 	for (int i = ROW_ADDRESS_START; i <= (ROW_ADDRESS_START + ADDRESS_COUNT_LIMIT); i++) {
 		Wire.beginTransmission(i);
@@ -380,6 +378,11 @@ void show_error_signal() {
 	digitalWrite(ERROR_LED, HIGH);
 }
 
+void write_to_alphanum(int value) {
+	lcd.clear();
+	lcd.print(value);
+}
+
 void setup() {
 	Serial.begin(115200);
 
@@ -416,8 +419,10 @@ void setup() {
 int last_button = -1;
 void loop() {
 	int const result = read_buttons();
+
 	if (result != last_button) {
 		last_button = result;
+		write_to_alphanum(result);
 		Serial.print("button # ");
 		Serial.print(result);
 		Serial.print(" is pressed.\n");
