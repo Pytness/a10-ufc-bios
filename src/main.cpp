@@ -27,10 +27,10 @@ void reset_button_buffer() {
 	}
 }
 
-int discover_line(int from, int to) {
+int discover_line(int address_from, int addres_to) {
 	int count = 0;
 
-	for (int i = from; i <= to; i++) {
+	for (int i = address_from; i <= addres_to; i++) {
 		Wire.beginTransmission(i);
 		if (Wire.endTransmission() == 0) {
 			count++;
