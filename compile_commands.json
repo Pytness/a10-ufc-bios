@@ -216,7 +216,19 @@
         "output": ".pio/build/uno/liba0d/PCF8574/PCF8574.cpp.o"
     },
     {
-        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/main.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -Iinclude -Isrc -I.pio/libdeps/uno/PCF8574 \"-I.pio/libdeps/uno/Adafruit LiquidCrystal\" \"-I.pio/libdeps/uno/Adafruit MCP23017 Arduino Library/src\" \"-I.pio/libdeps/uno/Adafruit BusIO\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/Wire/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro src/main.cpp",
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/libe57/Joystick/DynamicHID/DynamicHID.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -I.pio/libdeps/uno/Joystick/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro .pio/libdeps/uno/Joystick/src/DynamicHID/DynamicHID.cpp",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Joystick/src/DynamicHID/DynamicHID.cpp",
+        "output": ".pio/build/uno/libe57/Joystick/DynamicHID/DynamicHID.cpp.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/libe57/Joystick/Joystick.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -I.pio/libdeps/uno/Joystick/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro .pio/libdeps/uno/Joystick/src/Joystick.cpp",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Joystick/src/Joystick.cpp",
+        "output": ".pio/build/uno/libe57/Joystick/Joystick.cpp.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/main.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -Iinclude -Isrc -I.pio/libdeps/uno/Joystick/src -I.pio/libdeps/uno/PCF8574 \"-I.pio/libdeps/uno/Adafruit LiquidCrystal\" \"-I.pio/libdeps/uno/Adafruit MCP23017 Arduino Library/src\" \"-I.pio/libdeps/uno/Adafruit BusIO\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/Wire/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro src/main.cpp",
         "directory": "/home/ffvc/code/pytness/a10-cockpit",
         "file": "src/main.cpp",
         "output": ".pio/build/uno/src/main.cpp.o"
