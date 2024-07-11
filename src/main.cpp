@@ -3,6 +3,8 @@
 #include <PCF8574.h>
 #include <Wire.h>
 
+#include "buttons.hpp"
+
 #define ERROR_LED 11
 #define TEST_INPUT 12
 
@@ -20,6 +22,7 @@ int COLUMN_ADDRESS_COUNT = 0;
 int BUTTON_BUFFER[BUTTON_BUFFER_LENGTH] = {};
 
 Adafruit_LiquidCrystal lcd(0);
+Joystick_ Joystick(UFC_HID_REPORT_ID, JOYSTICK_TYPE_JOYSTICK, 64);
 
 void reset_button_buffer() {
 	for (int i = 0; i < BUTTON_BUFFER_LENGTH; i++) {
@@ -140,8 +143,7 @@ int read_buttons() {
 				return count;
 			}
 
-			int button = read_buttons_at_address(row_address,
-							     column_address);
+			int button = read_buttons_at_address(row_address, column_address);
 
 			if (button != -1) {
 				BUTTON_BUFFER[count] = button;
@@ -179,7 +181,7 @@ void test_mode() {
 
 void show_error_signal() { digitalWrite(ERROR_LED, HIGH); }
 
-void write_to_alphanum(int value) {
+void write_to_alphanum(char *value) {
 	lcd.clear();
 	lcd.print(value);
 }
@@ -210,8 +212,8 @@ void setup() {
 	if (enter_test_mode) {
 		Serial.println("Entering test mode...");
 		test_mode();
-		while (1)
-			;
+		while (1) {
+		};
 	}
 
 	discover_row_col_devices();
@@ -226,7 +228,8 @@ void loop() {
 		int button = BUTTON_BUFFER[i];
 		last_button = button;
 
-		write_to_alphanum(button);
+		Input input = get_input(button);
+		write_to_alphanum(input.name);
 
 		Serial.print("button # ");
 		Serial.print(button);
