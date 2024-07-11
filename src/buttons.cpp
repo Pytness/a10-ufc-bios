@@ -1,6 +1,6 @@
 #include "buttons.hpp"
 
-Input get_input(uint8_t id) {
+const Input *get_input(uint8_t id) {
 	const uint8_t INPUT_COUNT = sizeof(UFC_INPUTS) / sizeof(Input);
 
 	uint8_t left = 0;
@@ -10,7 +10,7 @@ Input get_input(uint8_t id) {
 		uint8_t mid = left + (right - left) / 2;
 
 		if (UFC_INPUTS[mid].id == id) {
-			return UFC_INPUTS[mid];
+			return &UFC_INPUTS[mid];
 		}
 
 		if (UFC_INPUTS[mid].id < id) {
@@ -20,5 +20,5 @@ Input get_input(uint8_t id) {
 		}
 	}
 
-	return UNKNOWN_INPUT;
+	return &UNKNOWN_INPUT;
 }

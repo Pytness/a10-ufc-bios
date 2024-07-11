@@ -1,4 +1,6 @@
+#pragma once
 
+#include "buttons.hpp"
 #include <Adafruit_LiquidCrystal.h>
 #include <Joystick.h>
 #include <PCF8574.h>
@@ -9,6 +11,8 @@
 #define BUTTON_BUFFER_LENGTH 8
 #define NO_BUTTON -1
 
+bool get_bit(int n, char bit) { return (n & (1 << bit)) != 0; }
+
 byte ADDRESS_COUNT_LIMIT = 4;
 
 const byte ROW_ADDRESS_START = 0x20;
@@ -18,9 +22,6 @@ int ROW_ADDRESS_COUNT = 0;
 int COLUMN_ADDRESS_COUNT = 0;
 
 int BUTTON_BUFFER[BUTTON_BUFFER_LENGTH] = {};
-
-Adafruit_LiquidCrystal lcd(0);
-Joystick_ Joystick(UFC_HID_REPORT_ID, JOYSTICK_TYPE_JOYSTICK, 64);
 
 void reset_button_buffer() {
 	for (int i = 0; i < BUTTON_BUFFER_LENGTH; i++) {
@@ -57,8 +58,6 @@ void discover_row_col_devices() {
 	Serial.println(ROW_ADDRESS_COUNT);
 	Serial.println(COLUMN_ADDRESS_COUNT);
 }
-
-bool get_bit(int n, char bit) { return (n & (1 << bit)) != 0; }
 
 int read_buttons_at_address(int row_address, int column_address) {
 	int result = -1;
@@ -122,6 +121,7 @@ int read_buttons_at_address(int row_address, int column_address) {
 	return result;
 }
 
+// Return
 int read_buttons() {
 
 	reset_button_buffer();
@@ -137,15 +137,10 @@ int read_buttons() {
 		for (int column_address = COLUMN_ADDRESS_START;
 		     column_address < COLUMN_ADDRESS_END; column_address++) {
 
-			if (count == BUTTON_BUFFER_LENGTH) {
-				return count;
-			}
-
 			int button = read_buttons_at_address(row_address, column_address);
 
 			if (button != -1) {
-				BUTTON_BUFFER[count] = button;
-				count += 1;
+				return button;
 			}
 		}
 	}
@@ -153,84 +148,4 @@ int read_buttons() {
 	return count;
 }
 
-void test_mode() {
-	byte count = 0;
-
-	Serial.println("I2C scanner. Scanning ...");
-
-	for (int i = 0; i <= 255; i++) {
-		Wire.beginTransmission(i);
-		if (Wire.endTransmission() == 0) {
-			Serial.print("Found address: ");
-			Serial.print(i, DEC);
-			Serial.print(" (0x");
-			Serial.print(i, HEX);
-			Serial.println(")");
-			count++;
-			delay(1);
-		}
-	}
-
-	Serial.println("Done.");
-	Serial.print("Found ");
-	Serial.print(count, DEC);
-	Serial.println(" device(s).");
-}
-
 void show_error_signal() { digitalWrite(ERROR_LED, HIGH); }
-
-void write_to_alphanum(char *value) {
-	lcd.clear();
-	lcd.print(value);
-}
-
-void setup() {
-
-	reset_button_buffer();
-	Serial.begin(115200);
-
-	pinMode(ERROR_LED, OUTPUT);
-	pinMode(TEST_INPUT, INPUT_PULLUP);
-
-	// Wait for serial port to be available
-	while (!Serial) {
-	}
-
-	Wire.begin();
-
-	bool enter_test_mode = digitalRead(TEST_INPUT) == HIGH;
-
-	if (!lcd.begin(16, 2)) {
-		show_error_signal();
-		Serial.println("Could not init lcd. Check wiring.");
-		while (1)
-			;
-	}
-
-	if (enter_test_mode) {
-		Serial.println("Entering test mode...");
-		test_mode();
-		while (1) {
-		};
-	}
-
-	discover_row_col_devices();
-	lcd.print("hello, world!");
-}
-
-int last_button = -1;
-void loop() {
-	int const button_count = read_buttons();
-
-	for (int i = 0; i < button_count; i++) {
-		int button = BUTTON_BUFFER[i];
-		last_button = button;
-
-		Input input = get_input(button);
-		write_to_alphanum(input.name);
-
-		Serial.print("button # ");
-		Serial.print(button);
-		Serial.print(" is pressed.\n");
-	}
-}
