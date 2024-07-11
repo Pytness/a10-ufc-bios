@@ -228,7 +228,73 @@
         "output": ".pio/build/uno/libe57/Joystick/Joystick.cpp.o"
     },
     {
-        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/main.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -Iinclude -Isrc -I.pio/libdeps/uno/Joystick/src -I.pio/libdeps/uno/PCF8574 \"-I.pio/libdeps/uno/Adafruit LiquidCrystal\" \"-I.pio/libdeps/uno/Adafruit MCP23017 Arduino Library/src\" \"-I.pio/libdeps/uno/Adafruit BusIO\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/Wire/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro src/main.cpp",
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o \".pio/build/uno/lib405/Adafruit NeoPixel/Adafruit_NeoPixel.cpp.o\" -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" \"-I.pio/libdeps/uno/Adafruit NeoPixel\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro \".pio/libdeps/uno/Adafruit NeoPixel/Adafruit_NeoPixel.cpp\"",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Adafruit NeoPixel/Adafruit_NeoPixel.cpp",
+        "output": ".pio/build/uno/lib405/Adafruit NeoPixel/Adafruit_NeoPixel.cpp.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-gcc -o \".pio/build/uno/lib405/Adafruit NeoPixel/esp.c.o\" -c -std=gnu11 -fno-fat-lto-objects -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" \"-I.pio/libdeps/uno/Adafruit NeoPixel\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro \".pio/libdeps/uno/Adafruit NeoPixel/esp.c\"",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Adafruit NeoPixel/esp.c",
+        "output": ".pio/build/uno/lib405/Adafruit NeoPixel/esp.c.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-gcc -o \".pio/build/uno/lib405/Adafruit NeoPixel/esp8266.c.o\" -c -std=gnu11 -fno-fat-lto-objects -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" \"-I.pio/libdeps/uno/Adafruit NeoPixel\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro \".pio/libdeps/uno/Adafruit NeoPixel/esp8266.c\"",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Adafruit NeoPixel/esp8266.c",
+        "output": ".pio/build/uno/lib405/Adafruit NeoPixel/esp8266.c.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-gcc -o \".pio/build/uno/lib405/Adafruit NeoPixel/kendyte_k210.c.o\" -c -std=gnu11 -fno-fat-lto-objects -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" \"-I.pio/libdeps/uno/Adafruit NeoPixel\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro \".pio/libdeps/uno/Adafruit NeoPixel/kendyte_k210.c\"",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Adafruit NeoPixel/kendyte_k210.c",
+        "output": ".pio/build/uno/lib405/Adafruit NeoPixel/kendyte_k210.c.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib41e/ESP32Servo/ESP32PWM.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -I.pio/libdeps/uno/ESP32Servo/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro .pio/libdeps/uno/ESP32Servo/src/ESP32PWM.cpp",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/ESP32Servo/src/ESP32PWM.cpp",
+        "output": ".pio/build/uno/lib41e/ESP32Servo/ESP32PWM.cpp.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib41e/ESP32Servo/ESP32Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -I.pio/libdeps/uno/ESP32Servo/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro .pio/libdeps/uno/ESP32Servo/src/ESP32Servo.cpp",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/ESP32Servo/src/ESP32Servo.cpp",
+        "output": ".pio/build/uno/lib41e/ESP32Servo/ESP32Servo.cpp.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-gcc -o .pio/build/uno/lib406/Nanopb/pb_common.c.o -c -std=gnu11 -fno-fat-lto-objects -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -I.pio/libdeps/uno/Nanopb -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro .pio/libdeps/uno/Nanopb/pb_common.c",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Nanopb/pb_common.c",
+        "output": ".pio/build/uno/lib406/Nanopb/pb_common.c.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-gcc -o .pio/build/uno/lib406/Nanopb/pb_decode.c.o -c -std=gnu11 -fno-fat-lto-objects -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -I.pio/libdeps/uno/Nanopb -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro .pio/libdeps/uno/Nanopb/pb_decode.c",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Nanopb/pb_decode.c",
+        "output": ".pio/build/uno/lib406/Nanopb/pb_decode.c.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-gcc -o .pio/build/uno/lib406/Nanopb/pb_encode.c.o -c -std=gnu11 -fno-fat-lto-objects -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -I.pio/libdeps/uno/Nanopb -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro .pio/libdeps/uno/Nanopb/pb_encode.c",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/Nanopb/pb_encode.c",
+        "output": ".pio/build/uno/lib406/Nanopb/pb_encode.c.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-gcc -o \".pio/build/uno/libcf8/DCS-BIOS DCSBIOSKit-Fork/internal/ESP32WiFi/SlaveMessage.pb.c.o\" -c -std=gnu11 -fno-fat-lto-objects -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" \"-I.pio/libdeps/uno/DCS-BIOS DCSBIOSKit-Fork/src\" -I.pio/libdeps/uno/Nanopb -I.pio/libdeps/uno/ESP32Servo/src \"-I.pio/libdeps/uno/Adafruit NeoPixel\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro \".pio/libdeps/uno/DCS-BIOS DCSBIOSKit-Fork/src/internal/ESP32WiFi/SlaveMessage.pb.c\"",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": ".pio/libdeps/uno/DCS-BIOS DCSBIOSKit-Fork/src/internal/ESP32WiFi/SlaveMessage.pb.c",
+        "output": ".pio/build/uno/libcf8/DCS-BIOS DCSBIOSKit-Fork/internal/ESP32WiFi/SlaveMessage.pb.c.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/buttons.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -Iinclude -Isrc \"-I.pio/libdeps/uno/DCS-BIOS DCSBIOSKit-Fork/src\" -I.pio/libdeps/uno/Nanopb -I.pio/libdeps/uno/ESP32Servo/src \"-I.pio/libdeps/uno/Adafruit NeoPixel\" -I.pio/libdeps/uno/Joystick/src -I.pio/libdeps/uno/PCF8574 \"-I.pio/libdeps/uno/Adafruit LiquidCrystal\" \"-I.pio/libdeps/uno/Adafruit MCP23017 Arduino Library/src\" \"-I.pio/libdeps/uno/Adafruit BusIO\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/Wire/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro src/buttons.cpp",
+        "directory": "/home/ffvc/code/pytness/a10-cockpit",
+        "file": "src/buttons.cpp",
+        "output": ".pio/build/uno/src/buttons.cpp.o"
+    },
+    {
+        "command": "/home/ffvc/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/main.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega32u4 -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_MICRO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -DUSB_VID=0x2341 -DUSB_PID=0x8037 \"-DUSB_PRODUCT=\\\"Arduino Micro\\\"\" -DUSB_MANUFACTURER=\\\"Arduino\\\" -Iinclude -Isrc \"-I.pio/libdeps/uno/DCS-BIOS DCSBIOSKit-Fork/src\" -I.pio/libdeps/uno/Nanopb -I.pio/libdeps/uno/ESP32Servo/src \"-I.pio/libdeps/uno/Adafruit NeoPixel\" -I.pio/libdeps/uno/Joystick/src -I.pio/libdeps/uno/PCF8574 \"-I.pio/libdeps/uno/Adafruit LiquidCrystal\" \"-I.pio/libdeps/uno/Adafruit MCP23017 Arduino Library/src\" \"-I.pio/libdeps/uno/Adafruit BusIO\" -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/libraries/Wire/src -I/home/ffvc/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/ffvc/.platformio/packages/framework-arduino-avr/variants/micro src/main.cpp",
         "directory": "/home/ffvc/code/pytness/a10-cockpit",
         "file": "src/main.cpp",
         "output": ".pio/build/uno/src/main.cpp.o"
