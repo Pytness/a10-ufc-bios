@@ -18,44 +18,8 @@ struct Input {
 const Input UNKNOWN_INPUT = {.id = 255, .name = "UNKNOWN"};
 
 /*
-"MASTER_CAUTION"
-"UFC_MASTER_CAUTION"
-
-"UFC_STEER"
-
-"UFC_1"
-"UFC_2"
-"UFC_3"
-"UFC_4"
-"UFC_5"
-"UFC_6"
-"UFC_7"
-"UFC_8"
-"UFC_9"
-"UFC_10"
-"UFC_HACK"
-
-"UFC_FUNC"
-"UFC_LTR"
-"UFC_CLR"
-
-"UFC_ENT"
-"UFC_MK"
-"UFC_ALT_ALRT"
-
-"UFC_DATA"
-"UFC_DEPR"
-"UFC_INTEN"
-
-"UFC_SEL"
-"UFC_SPC"
-
-"UFC_NA1"
-"UFC_NA2"
-"UFC_NA3"
-"UFC_NA4"
-"UFC_NA5"
-"UFC_NA6"
+"MASTER_CAUTION"      // LED
+"UFC_MASTER_CAUTION"  // Button
 */
 // clang-format off
 const Input UFC_INPUTS[] = {
