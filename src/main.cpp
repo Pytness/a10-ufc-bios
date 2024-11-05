@@ -18,7 +18,7 @@ void setup() {
 int last_button = -1;
 
 void loop() {
-	// DcsBios::loop();
+	DcsBios::loop();
 
 	const int button = read_buttons();
 
